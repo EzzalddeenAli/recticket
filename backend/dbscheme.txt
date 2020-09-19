@@ -1,0 +1,78 @@
+//// -- LEVEL 1
+//// -- Tables and References
+
+// Creating tables
+Table Contacts as C {
+  id int [pk]
+  number varchar [unique]
+  name varchar
+  email varchar
+  profilePicUrl varchar
+  createdAt datetime
+  updatedAt datetime
+}
+
+Table ContctCustomField as CCF {
+  id int [pk]
+  name varchar
+  value varchar
+  contactId int [ref: > C.id]
+  createdAt datetime
+  updatedAt datetime
+ }
+
+Table Messages as M {
+  id varchar [pk]
+  body text
+  ack int
+  read tinyint
+  mediaType varchar
+  mediaUrl varchar
+  ticketId int [ref: > T.id]
+  createdAt datetime
+  updatedAt datetime
+  fromMe tinyInt
+}
+
+Table Settings as S{
+  key varchar [pk]
+  value text
+  createdAt datetime
+  updatedAt datetime
+}
+
+Table Tickets as T {
+  id int [pk]
+  status varchar
+  lastMessage text
+  contactId int [ref: > C.id]
+  userId int [ref: > U.id]
+  whatsappId int [ref: > W.id]
+  createdAt datetime
+  updatedAt datetime
+}
+
+Table Users as U {
+  id int [pk]
+  name varchar
+  email varchar [unique]
+  passwordHash varchar
+  createdAt datetime
+  updatedAt datetime
+  profile varchar
+}
+
+
+Table Whatsapps as W {
+  id int [pk]
+  session text
+  qrcode text
+  status varchar
+  battery varchar
+  plugged tinyInt
+  createdAt datetime
+  updatedAt datetime
+  name varchar [unique]
+  default tinyInt
+}
+

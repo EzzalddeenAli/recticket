@@ -1,0 +1,9 @@
+node_modules
+public/*
+!public/.gitkeep 
+.env
+
+package-lock.json
+yarn.lock
+
+/src/config/sentry.js
