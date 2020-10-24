@@ -23,6 +23,10 @@ class Contact extends Sequelize.Model {
 			foreignKey: "contactId",
 			as: "extraInfo",
 		});
+		this.belongsTo(models.DefaultLocation, {
+			foreignKey: "locationId",
+			as: "location",
+		});
 	}
 }
 

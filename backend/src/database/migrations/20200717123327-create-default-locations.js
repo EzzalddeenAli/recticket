@@ -2,7 +2,7 @@
 
 module.exports = {
 	up: (queryInterface, Sequelize) => {
-		return queryInterface.createTable("Contacts", {
+		return queryInterface.createTable("DefaultLocations", {
 			id: {
 				type: Sequelize.INTEGER,
 				autoIncrement: true,
@@ -13,20 +13,23 @@ module.exports = {
 				type: Sequelize.STRING,
 				allowNull: false,
 			},
-			number: {
+			address: {
 				type: Sequelize.STRING,
 				allowNull: false,
-				unique: true,
 			},
-			profilePicUrl: {
+			latitude: {
 				type: Sequelize.STRING,
-			},
-			locationId: {
-				type: Sequelize.INTEGER,
-				references: { model: "DefaultLocations", key: "id" },
-				onUpdate: "CASCADE",
-				onDelete: "SET NULL",
-			},
+				allowNull: false,
+            },
+            longitude: {
+				type: Sequelize.STRING,
+				allowNull: false,
+            },
+            belongsToContact: {
+                type: Sequelize.BOOLEAN,
+                allowNull: false,
+				defaultValue: false,
+            },
 			createdAt: {
 				type: Sequelize.DATE,
 				allowNull: false,
@@ -39,6 +42,6 @@ module.exports = {
 	},
 
 	down: queryInterface => {
-		return queryInterface.dropTable("Contacts");
+		return queryInterface.dropTable("DefaultLocations");
 	},
 };
